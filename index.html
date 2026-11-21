@@ -32,6 +32,18 @@ h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; 
 .brand__x { font-size: 20px; }
 .brand__ir { height: 72px; margin: -12px; }
 .group + .group { margin-top: 96px; }
+.jump { position: sticky; top: 0; z-index: 10; display: flex; gap: 8px; margin: 0 -24px 0; padding: 12px 24px; background: rgba(255, 255, 255, .94); border-bottom: 1px solid var(--line); }
+.jump button { padding: 8px 14px; border: 1px solid var(--text); background: #ffffff; color: var(--text); font: inherit; font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.jump button[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: #ffffff; }
+.jump button:hover { background: var(--red); border-color: var(--red); color: #ffffff; }
+.jump button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.round { padding-top: 72px; scroll-margin-top: 56px; }
+.round__head { display: grid; gap: 8px; margin-bottom: 56px; }
+.round__head h1 { margin: 0; }
+.round__head p { margin: 0; max-width: 40rem; }
+.tag { display: inline-block; width: max-content; padding: 4px 8px; background: var(--red); color: #ffffff; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.group h2.sec { margin: 12px 0 16px; font-size: clamp(32px, 5vw, 48px); line-height: 1.05; font-weight: 700; text-transform: uppercase; color: var(--ink); }
+.round .group { scroll-margin-top: 56px; }
 .note { margin-top: 48px; font-size: 14px; color: #555555; max-width: 40rem; }
 .decide { max-width: 40rem; margin-top: 48px; }
 .decide h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--ink); }
@@ -49,9 +61,42 @@ h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; 
 <body>
 <main>
 <div class="brand" role="img" aria-label="Driver × Indie Ridge"><img class="brand__driver" src="assets/driver-logo.svg" alt=""><span class="brand__x" aria-hidden="true">×</span><img class="brand__ir" src="assets/indie-ridge-logo.svg" alt=""></div>
+<div class="jump" role="tablist" aria-label="Rounds"><button type="button" role="tab" id="tab-2" aria-controls="round-2" aria-selected="true">Round 2 · Latest</button><button type="button" role="tab" id="tab-1" aria-controls="round-1" aria-selected="false" tabindex="-1">Round 1</button></div>
+
+<section class="round" id="round-2" role="tabpanel" aria-labelledby="tab-2">
+<div class="round__head">
+<span class="tag">Latest</span>
+<h1 id="r2-h">Round 2</h1>
+<p>Revisions from the round 1 review. Round 1 stays below for comparison.</p>
+</div>
+<section class="group" id="r2-pdp">
+<p class="eyebrow">Indie Ridge · Product page</p>
+<h2 class="sec">PDP — round 2</h2>
+<p class="intro">The details drawer layout with a gallery grid on desktop and a swipeable gallery on mobile. Open it on a computer to see the desktop layout, or on a phone to see the mobile layout.</p>
+<div class="grid">
+<section class="opt">
+<h2>The Crow</h2>
+<p>Version 6.75 ⓘ opens the details drawer at Version notes. Sold-out sizes use a "Notify me" link that opens an email pop-up. On mobile, a full-width Add to cart bar appears after you scroll past the button.</p>
+<div class="links"><a href="round2.html">Men's <span aria-hidden="true">›</span></a><a href="round2.html?gender=womens">Women's, size 10 sold out <span aria-hidden="true">›</span></a></div>
+</section>
+<section class="opt">
+<h2>Option · Version popover</h2>
+<p>The same page, but Version 6.75 ⓘ opens a small popover next to the version line, with a link to the full version notes.</p>
+<div class="links"><a href="round2.html?version=popover">Men's, version popover <span aria-hidden="true">›</span></a></div>
+</section>
+</div>
+<p class="note">Things to try: open Product details and switch sections, tap Version 6.75 ⓘ, pick size 10 in Women's and tap the notify link, and on a phone scroll past Add to cart. Copy, prices and reviews are placeholders.</p>
+</section>
+</section>
+
+<section class="round" id="round-1" role="tabpanel" aria-labelledby="tab-1" hidden>
+<div class="round__head">
+<h1 id="r1-h">Round 1</h1>
+<p>The first set of designs, as presented.</p>
+</div>
 <section class="group">
 <p class="eyebrow">Indie Ridge · Homepage</p>
-<h1>Homepage — two versions</h1>
+<h2 class="sec">Homepage — two versions</h2>
 <p class="intro">Product cards and Shop boots open the product page.</p>
 
 <div class="grid">
@@ -81,9 +126,9 @@ h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; 
 </div>
 </section>
 
-<section class="group" id="pdp">
+<section class="group" id="r1-pdp">
 <p class="eyebrow">Indie Ridge · Product page</p>
-<h1>PDP — three options</h1>
+<h2 class="sec">PDP — three options</h2>
 <p class="intro">Each option is shown for a boot (The Crow) and a glove (Denim On Brown). Each is a working prototype. Open it on a computer to see the desktop layout, or on a phone to see the mobile layout.</p>
 
 <div class="grid">
@@ -114,11 +159,21 @@ h1 { margin: 12px 0 16px; font-size: clamp(40px, 7vw, 72px); line-height: 1.05; 
 </ul>
 </div>
 </section>
+</section>
 </main>
-<a class="scroll" href="#pdp">Product page options <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1.5 6.5 6 11l4.5-4.5" stroke="currentColor" stroke-width="1.5"/></svg></a>
 <script>
-const cue = document.querySelector('.scroll');
-new IntersectionObserver(([e]) => cue.classList.toggle('is-hidden', e.isIntersecting)).observe(document.querySelector('#pdp h1'));
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+const show = (tab, focus) => {
+  tabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; document.getElementById(t.getAttribute('aria-controls')).hidden = !on; });
+  if (focus) tab.focus();
+  history.replaceState(null, '', '#' + tab.getAttribute('aria-controls'));
+};
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => { show(t); window.scrollTo(0, 0); });
+  t.addEventListener('keydown', e => { const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (d) show(tabs[(i + d + tabs.length) % tabs.length], true); });
+});
+const fromHash = tabs.find(t => '#' + t.getAttribute('aria-controls') === location.hash);
+if (fromHash) show(fromHash);
 </script>
 </body>
 </html>
