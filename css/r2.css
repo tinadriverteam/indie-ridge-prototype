@@ -141,3 +141,14 @@
   .r2 .satc .btn-red { width: 100%; height: 60px; border-radius: 0; }
   .r2 .satc__label { display: none; }
 }
+
+/* Mobile gallery alternatives: full-bleed square slides with dots or a counter over the image */
+@media (max-width: 749px) {
+  .r2 .mgw { position: relative; }
+  .r2 .mgw--dots .mg, .r2 .mgw--counter .mg { gap: 0; }
+  .r2 .mgw--dots .mg__slot, .r2 .mgw--counter .mg__slot { flex-basis: 100%; background: #ffffff; }
+  .r2 .mgw--dots .mg__zoom, .r2 .mgw--counter .mg__zoom { display: none; }
+  .r2 .mgw--dots .mg__dots { position: absolute; left: 0; right: 0; bottom: 41px; margin: 0; pointer-events: none; }
+  .r2 .mgw--counter .mg__dots { display: none; }
+  .r2 .mgw--counter .mg__count { display: block; top: auto; right: auto; bottom: 8px; left: 50%; transform: translateX(-50%); padding: 5px 11px; border-radius: 32px; background: rgba(0, 0, 0, .4); box-shadow: none; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #ffffff; font-size: 13px; font-weight: 500; letter-spacing: .04em; white-space: nowrap; }
+}

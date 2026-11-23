@@ -61,7 +61,7 @@ body { margin: 0; }
 </div>
 </sc-if>
 <sc-if value="{{isGrid}}" hint-placeholder-val="{{no}}">
-<div>
+<div class="{{mgwCls}}">
 <div class="mg" id="mg" role="region" aria-label="Product images" onScroll="{{mgScroll}}">
 <sc-for list="{{media}}" as="m" hint-placeholder-count="5"><div class="mg__slot">
 <sc-if value="{{m.first}}" hint-placeholder-val="{{no}}"><div class="badges mg__badges"><span class="badge badge--new">New</span><span class="badge badge--line">Waterproof</span></div></sc-if>
@@ -579,6 +579,7 @@ class Component extends DCLogic {
       openSize: isAcc ? () => { this.setState({ measOpen: true }); setTimeout(() => { const d = document.getElementById('acc-meas'); if (d) { d.open = true; d.scrollIntoView({ behavior: 'smooth', block: 'center' }); } }, 0); } : open('Size & fit'),
       isDrawer: !isAcc, isAccordion: isAcc, isGrid, isCarousel: !isGrid,
       piCls: isGrid ? 'pi pi--grid' : 'pi',
+      mgwCls: 'mgw mgw--' + (this.props.mgallery ?? 'peek'),
       topCls: isGrid ? 'top top--white' : 'top',
       measOpen: !!this.state.measOpen,
       aboutNote: m ? '[Men’s fit notes, from the men’s product metafields]' : '[Women’s fit notes, from the women’s product metafields]',
@@ -632,7 +633,7 @@ class Component extends DCLogic {
 }
 
 const q = new URLSearchParams(location.search);
-mountDC(Component, { verinfo: q.get('version') === 'popover' ? 'popover' : undefined, details: 'drawer', gallery: 'grid', gender: q.get('gender') === 'womens' ? 'womens' : 'mens', drawer: q.get('drawer') === 'open' });
+mountDC(Component, { verinfo: q.get('version') === 'popover' ? 'popover' : undefined, mgallery: ['dots', 'counter'].includes(q.get('gallery')) ? q.get('gallery') : undefined, details: 'drawer', gallery: 'grid', gender: q.get('gender') === 'womens' ? 'womens' : 'mens', drawer: q.get('drawer') === 'open' });
 </script>
 </body>
 </html>
