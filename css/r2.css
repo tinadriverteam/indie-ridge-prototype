@@ -19,8 +19,8 @@
 /* Buy box */
 .r2 .sglink { justify-self: start; margin-top: 14px; padding: 0; border: 0; background: none; cursor: pointer; font-size: 13px; }
 .r2 .soles { gap: 10px; }
-.r2 .sole--img { width: 56px; height: 56px; padding: 4px; border: 1px solid var(--line); background: #ffffff; }
-.r2 .sole--img img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.r2 .sole--img { width: 56px; height: 56px; padding: 0; overflow: hidden; border: 1px solid var(--line); background: var(--grey); }
+.r2 .sole--img img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .r2 .sole--img[aria-checked="true"] { outline: none; border: 2px solid var(--red); }
 .r2 .sole--img:not([aria-checked="true"]):hover { outline: none; border: 2px solid var(--ink); }
 .r2 .sizes { gap: 4px; }
