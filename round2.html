@@ -633,7 +633,7 @@ class Component extends DCLogic {
 }
 
 const q = new URLSearchParams(location.search);
-mountDC(Component, { verinfo: q.get('version') === 'popover' ? 'popover' : undefined, mgallery: ['dots', 'counter'].includes(q.get('gallery')) ? q.get('gallery') : undefined, details: 'drawer', gallery: 'grid', gender: q.get('gender') === 'womens' ? 'womens' : 'mens', drawer: q.get('drawer') === 'open' });
+mountDC(Component, { vh: +q.get('vh') || undefined, verinfo: q.get('version') === 'popover' ? 'popover' : undefined, mgallery: ['dots', 'counter'].includes(q.get('gallery')) ? q.get('gallery') : undefined, details: 'drawer', gallery: 'grid', gender: q.get('gender') === 'womens' ? 'womens' : 'mens', drawer: q.get('drawer') === 'open' });
 </script>
 </body>
 </html>

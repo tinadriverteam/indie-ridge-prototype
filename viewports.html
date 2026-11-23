@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile viewports · Driver × Indie Ridge</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="stylesheet" href="css/hub.css">
+<style>
+.phones { display: flex; flex-wrap: wrap; gap: 56px; margin-top: 48px; }
+.phone { display: grid; gap: 16px; justify-items: start; }
+.phone h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--ink); }
+.phone p { margin: 0; max-width: 442px; font-size: 14px; }
+.device { width: 442px; height: 914px; padding: 20px; border-radius: 75px; background: #1a1b18; }
+.screen { position: relative; display: flex; flex-direction: column; width: 402px; height: 874px; border-radius: 55px; overflow: hidden; background: #ffffff; font-family: -apple-system, 'Helvetica Now Display', Helvetica, Arial, sans-serif; color: #000000; }
+.status { position: relative; flex: none; height: 62px; font-size: 17px; font-weight: 600; line-height: 1; }
+.status span:first-child { position: absolute; left: 50px; top: 24px; }
+.status span + span { position: absolute; left: 138px; top: 11px; width: 126px; height: 37px; border-radius: 19px; background: #000000; }
+.screen iframe { display: block; flex: none; width: 402px; border: 0; transition: height .25s ease; }
+.home { position: absolute; z-index: 2; left: 131px; bottom: 8px; width: 139px; height: 5px; border-radius: 3px; background: #000000; }
+.bar { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+.pill { display: flex; align-items: center; justify-content: center; height: 48px; border-radius: 24px; background: #ffffff; box-shadow: 0 4px 16px rgba(0, 0, 0, .12); font-size: 17px; font-weight: 500; }
+.circle { display: grid; place-items: center; flex: none; width: 48px; }
+/* Safari: 714 px page with a 98 px floating bar, shrinking to 754 / 58 after scrolling down */
+.safari iframe { height: 714px; }
+.safari .bar { background: #f6f6f6; }
+.safari .full { position: absolute; left: 14px; right: 14px; top: 6px; display: flex; gap: 8px; }
+.safari .full .pill:nth-child(2) { flex: 1; }
+.safari .mini { position: absolute; left: 50%; top: 8px; transform: translateX(-50%); padding: 4px 18px; border-radius: 14px; background: #ffffff; box-shadow: 0 2px 8px rgba(0, 0, 0, .12); font-size: 13px; font-weight: 500; opacity: 0; }
+.safari.is-min iframe { height: 754px; }
+.safari.is-min .full { opacity: 0; }
+.safari.is-min .mini { opacity: 1; }
+/* Chrome: 50 px top bar and 78 px bottom toolbar around a 684 px page; after scrolling down a 20 px top strip and a 792 px page */
+.chrome .top { position: relative; flex: none; height: 50px; overflow: hidden; transition: height .25s ease; }
+.chrome .top .pill { position: absolute; left: 10px; right: 10px; top: 4px; height: 38px; border-radius: 19px; background: #eff1f3; box-shadow: none; font-size: 16px; font-weight: 400; }
+.chrome .top small { display: block; text-align: center; font-size: 12px; line-height: 20px; color: #444444; opacity: 0; }
+.chrome iframe { height: 684px; }
+.chrome .bar { border-top: 1px solid #dadce0; display: flex; justify-content: space-around; align-items: flex-start; }
+.chrome .bar span { display: grid; place-items: center; width: 80px; height: 44px; }
+.chrome.is-min .top { height: 20px; }
+.chrome.is-min .top .pill { opacity: 0; }
+.chrome.is-min .top small { opacity: 1; }
+.chrome.is-min iframe { height: 792px; }
+@media (prefers-reduced-motion: reduce) { .screen iframe, .chrome .top { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="pdp.html">← Product page</a>
+<p class="eyebrow">Indie Ridge · Product page · Round 2</p>
+<h1>Mobile viewports</h1>
+<p class="intro">The round 2 product page inside an iPhone 17 with iOS 26 Safari, and with Chrome. Scroll inside a phone: the browser bars shrink as you scroll down and come back when you scroll up, and the full-width Add to cart bar appears once the on-page button is out of view. Best viewed on a computer.</p>
+<div class="phones">
+<section class="phone" aria-labelledby="s-h">
+<h2 id="s-h">iOS 26 Safari</h2>
+<p>Visible page: 714 px with the bar open, 754 px after scrolling down.</p>
+<div class="device"><div class="screen safari" data-phone>
+<div class="status"><span>9:41</span><span></span></div>
+<iframe src="round2.html?vh=714" title="Product page in iOS 26 Safari"></iframe>
+<div class="bar">
+<div class="full"><span class="pill circle"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden="true"><path d="M12.5 4l-6 6 6 6" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="pill">indieridge.com</span><span class="pill circle"><svg viewBox="0 0 20 20" width="20" height="20" fill="#000" aria-hidden="true"><circle cx="4" cy="10" r="1.8"/><circle cx="10" cy="10" r="1.8"/><circle cx="16" cy="10" r="1.8"/></svg></span></div>
+<span class="mini">indieridge.com</span>
+</div>
+<span class="home"></span>
+</div></div>
+</section>
+<section class="phone" aria-labelledby="c-h">
+<h2 id="c-h">Chrome on iPhone</h2>
+<p>Visible page: 684 px with the toolbars open, 792 px after scrolling down.</p>
+<div class="device"><div class="screen chrome" data-phone>
+<div class="status"><span>9:41</span><span></span></div>
+<div class="top"><span class="pill">indieridge.com</span><small>indieridge.com</small></div>
+<iframe src="round2.html?vh=684" title="Product page in Chrome on iPhone"></iframe>
+<div class="bar" aria-hidden="true"><span><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#1f1f1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M9 5l7 7-7 7" stroke="#b3b3b3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M12 5v14M5 12h14" stroke="#1f1f1f" stroke-width="2" stroke-linecap="round"/></svg></span><span><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3.5" stroke="#1f1f1f" stroke-width="2"/><path d="M12.6 9v6" stroke="#1f1f1f" stroke-width="2" stroke-linecap="round"/></svg></span><span><svg viewBox="0 0 24 24" width="24" height="24" fill="#1f1f1f"><circle cx="12" cy="5.5" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="12" cy="18.5" r="1.9"/></svg></span></div>
+<span class="home"></span>
+</div></div>
+</section>
+</div>
+</main>
+<script>
+// Browser bars shrink when the page inside the phone scrolls down and return when it scrolls up
+document.querySelectorAll('[data-phone]').forEach(screen => {
+  const frame = screen.querySelector('iframe');
+  frame.addEventListener('load', () => {
+    const win = frame.contentWindow; let last = 0;
+    win.addEventListener('scroll', () => {
+      const y = win.scrollY, d = y - last;
+      if (Math.abs(d) < 6) return;
+      last = y;
+      screen.classList.toggle('is-min', y > 40 && d > 0);
+    }, { passive: true });
+  });
+});
+</script>
+</body>
+</html>
