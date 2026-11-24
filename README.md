@@ -5,6 +5,7 @@ Clickable prototypes of the homepage in two versions, and of The Crow product pa
 - `index.html` — landing page linking every page
 - `home.html` — homepage version 1; add `?version=alt` for tabbed best sellers
 - `home-v2.html` — homepage version 2
+- `menu.html` — mega menu on the round 2 homepage: hover Shop All on desktop, tap the menu icon on mobile
 - `drawer.html`, `accordion.html`, `gallery.html` — add `?gender=womens` to open the women's page with size 10 sold out
 - `assets/` — product images, video and Helvetica Now Display font files
 - `css/`, `js/` — styles, React 18 and the small renderer that runs the page templates

@@ -1,0 +1,44 @@
+/* Mega menu — Figma MegaMenu_D-left, MenuNav-M, MenuNav-M-2 */
+.nh .nh-ni[aria-expanded="true"] { text-decoration-color: var(--red); }
+
+.mm { position: absolute; top: 100%; left: 0; right: 0; display: flex; padding: 0 48px; background: #ffffff; box-shadow: 0 2px 3px rgba(0, 0, 0, .1); }
+.mm__col { flex: none; padding: 32px 40px; border-right: 1px solid var(--line); }
+.mm__col:first-child { padding-left: 0; }
+.mm__col--art { padding-right: 0; border-right: 0; }
+.mm__h { width: 180px; min-height: 70px; margin: 0; font-size: 24px; font-weight: 700; line-height: 35px; letter-spacing: .01em; text-transform: uppercase; color: var(--ink); }
+.mm__list { margin: 0; padding: 48px 0 0; list-style: none; }
+.mm__list a, .md__grp li a { display: block; padding: 6px 0; font-size: 16px; font-weight: 500; line-height: 1.1; letter-spacing: .02em; color: #211e25; }
+.mm a:hover, .md a:hover { color: var(--red); }
+.mm__col--art .mm__h { width: 296px; min-height: 0; margin-bottom: 48px; }
+.mm__art { display: grid; gap: 16px; color: var(--text); }
+.mm__col--art .mm__art > img { display: block; width: 296px; height: 196px; object-fit: cover; }
+.mm__go { display: flex; align-items: center; gap: 16px; font-size: 16px; font-weight: 500; line-height: 1.1; letter-spacing: .02em; text-transform: uppercase; }
+.mm__go > span:first-child { flex: 1; }
+.mm__sq { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; border: 1px solid var(--text); border-radius: 1px; background: #ffffff; cursor: pointer; }
+.mm__sq img { display: block; }
+.mm__sq--back img { transform: rotate(180deg); }
+
+.md { display: none; }
+
+@media (max-width: 749px) {
+  .mm { display: none; }
+  .md { position: fixed; inset: 0; z-index: 70; display: flex; flex-direction: column; overflow-y: auto; padding-bottom: 28px; background: #ffffff; }
+  .md a { text-decoration: none; }
+  .md__bar { flex: none; display: flex; align-items: center; height: 56px; padding: 0 16px; margin-bottom: 16px; }
+  .md__close { display: block; width: 32px; height: 32px; padding: 0; border: 0; background: none; cursor: pointer; }
+  .md__close img { display: block; }
+  .md__cats { margin: 0; padding: 0; list-style: none; }
+  .md__cat { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 24px 16px; border: 0; border-bottom: 1px solid var(--line); background: none; font: inherit; font-size: 20px; font-weight: 700; letter-spacing: .01em; text-align: left; text-transform: uppercase; color: var(--ink); cursor: pointer; }
+  .md__acct { display: flex; align-items: center; gap: 8px; padding: 24px 16px; font-size: 13px; font-weight: 700; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+  .md .md__acct span { text-decoration: underline; text-underline-offset: 3px; }
+  .md__acct svg { width: 20px; height: 20px; margin: 12px 0; }
+  .md__badge { display: block; margin: auto 16px 0; padding-top: 48px; box-sizing: content-box; }
+  .md__head { display: flex; align-items: center; gap: 16px; padding: 24px 16px; }
+  .md__head h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: .01em; text-transform: uppercase; color: var(--text); }
+  .md__grp { padding: 16px; border-bottom: 1px solid var(--line); }
+  .md__grp h3 { margin: 0; padding: 2px 0; font-size: 13px; font-weight: 700; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; color: #211e25; }
+  .md__grp ul { margin: 0; padding: 8px 0 0; list-style: none; }
+  .md__grp--art { border-bottom: 0; }
+  .md__grp--art .mm__art { margin-top: 16px; }
+  .md__grp--art .mm__art > img { display: block; width: 100%; aspect-ratio: 454 / 300; object-fit: cover; }
+}
