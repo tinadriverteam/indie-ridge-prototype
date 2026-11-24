@@ -99,7 +99,7 @@ body { margin: 0; }
 <span class="hp-card__media">
 <span class="hp-badges"><sc-for list="{{p.b}}" as="b"><span class="{{b.c}}">{{b.l}}</span></sc-for></span>
 <img class="hp-img" src="{{p.i}}" alt="{{p.t}}">
-<button type="button" class="plp-qa" aria-label="Quick add {{p.t}}"><img src="assets/plp-quick-add.svg" width="15" height="15" alt=""></button>
+<button type="button" class="plp-qa" aria-label="Quick add {{p.t}}"><img src="assets/plp-quick-add.svg" width="15" height="15" alt=""><span class="plp-qa__label">Choose</span></button>
 </span>
 <span class="hp-card__row hp-card__name"><a class="plp-card__link" href="{{p.href}}">{{p.t}}</a><span class="ir-rating"><x-import component-from-global-scope="IndieRidge.Rating" value="{{p.r}}"></x-import><span class="ir-rating__count">{{p.c}}</span></span></span>
 <span class="hp-card__row hp-card__sub"><span>{{p.s}}</span><span>{{p.p}}</span></span>
