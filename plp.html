@@ -221,7 +221,7 @@ const BOOTS_TEXT = 'motorcycle boots with real protection, tested to the CE stan
 const GLOVES_TILE = { i: 'assets/48acd977afa766a1e9d7f59054adcb51.webp', alt: 'Gloved hands holding a phone with a map on it', pos: '50% 50%', btn: 'Shop gloves' };
 const COLLECTIONS = {
   boots: { crumb: 'Shop All', tile: GLOVES_TILE, banner: { hero: true, btns: true, h: 'Motorcycle boots', p: 'For all conditions.', i: 'assets/68a1cb764ca18c46e91889a67d6969fb.webp', pos: '50% 50%' } },
-  mens: { crumb: 'Shop All', tile: GLOVES_TILE, banner: { split: true, h: 'Men’s motorcycle boots', p: 'Men’s ' + BOOTS_TEXT, i: 'assets/39cfd957014a2db054302529ecb2ed64.webp', alt: 'Brown leather Indie Ridge boot on a motorcycle foot peg', pos: '50% 75.8%' } },
+  mens: { crumb: 'Men’s', tile: GLOVES_TILE, banner: { split: true, h: 'Men’s motorcycle boots', p: 'Men’s ' + BOOTS_TEXT, i: 'assets/39cfd957014a2db054302529ecb2ed64.webp', alt: 'Brown leather Indie Ridge boot on a motorcycle foot peg', pos: '50% 75.8%' } },
   womens: { crumb: 'Women’s', tile: { i: 'assets/29812a5524ad72893f02d2e2ff51a2f6.webp', alt: 'Rider in a helmet and graphic tee beside her motorcycle', pos: '43% 100%', btn: 'Shop apparel' }, banner: { split: true, h: 'Women’s motorcycle boots', p: 'Women’s ' + BOOTS_TEXT, i: 'assets/40c75fe7f1ef4a99cac9b46396bbd686.webp', alt: 'Rider’s black boot on the foot peg of a parked motorcycle', pos: '50% 83%' } }
 };
 const COLLECTION = COLLECTIONS[new URLSearchParams(location.search).get('collection')];
