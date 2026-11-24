@@ -29,9 +29,8 @@
   .md__close img { display: block; }
   .md__cats { margin: 0; padding: 0; list-style: none; }
   .md__cat { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 24px 16px; border: 0; border-bottom: 1px solid var(--line); background: none; font: inherit; font-size: 20px; font-weight: 700; letter-spacing: .01em; text-align: left; text-transform: uppercase; color: var(--ink); cursor: pointer; }
-  .md__acct { display: flex; align-items: center; gap: 8px; padding: 24px 16px; font-size: 13px; font-weight: 700; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
-  .md .md__acct span { text-decoration: underline; text-underline-offset: 3px; }
-  .md__acct svg { width: 20px; height: 20px; margin: 12px 0; }
+  .md__links { display: grid; gap: 12px; margin: 0; padding: 56px 16px 0; list-style: none; }
+  .md__links a { font-size: 13px; font-weight: 700; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
   .md__badge { display: block; margin: auto 16px 0; padding-top: 48px; box-sizing: content-box; }
   .md__head { display: flex; align-items: center; gap: 16px; padding: 24px 16px; }
   .md__head h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: .01em; text-transform: uppercase; color: var(--text); }
