@@ -19,8 +19,8 @@
 .hp2 .h2-cats .h2-arr--next { right: 41px; }
 .hp2 .h2-cats .h2-arr--prev { left: 41px; }
 @media (min-width: 750px) {
-  .hp2 .h2-cats .h2-arr { opacity: 0; transition: opacity .2s, border-color .2s; }
-  .hp2 .h2-cats .h2-slider:hover .h2-arr, .hp2 .h2-cats .h2-slider:focus-within .h2-arr { opacity: 1; }
+  .hp2 .h2-slider .h2-arr { opacity: 0; transition: opacity .2s, border-color .2s; }
+  .hp2 .h2-slider:hover .h2-arr, .hp2 .h2-slider:focus-within .h2-arr { opacity: 1; }
 }
 
 /* Best sellers */
