@@ -67,6 +67,23 @@
   .r2 .dd__return { margin-top: auto; padding-top: 32px; }
 }
 
+/* Desktop header — Figma IR Header Desktop / Simplified */
+.nh-ann__d { display: none; }
+@media (min-width: 750px) {
+  .r2 .nh--simple .nh-ann { font-size: 12px; letter-spacing: .08em; }
+  .r2 .nh--simple .nh-ann__m { display: none; }
+  .r2 .nh--simple .nh-ann__d { display: inline; }
+  .r2 .nh--simple .nh-row { grid-template-columns: auto auto 1fr; column-gap: 0; }
+  .r2 .nh--simple .nh-logo { padding-right: 24px; }
+  .r2 .nh--simple .nh-logo svg { width: 54px; height: auto; }
+  .r2 .nh--simple .nh-nav { gap: 8px; }
+  .r2 .nh--simple .nh-ni { height: 72px; padding: 0 8px; font-size: 13px; font-weight: 700; letter-spacing: .08em; }
+  .r2 .nh--simple .nh-ni:hover { color: var(--red); text-decoration-color: transparent; }
+  .r2 .nh--simple .nh-ni--mega:hover, .r2 .nh--simple .nh-ni--mega[aria-expanded="true"] { color: var(--text); text-decoration-color: var(--red); }
+  .r2 .nh--simple .nh-icons { gap: 24px; }
+  .r2 .nh--simple .nh-ib { width: 20px; }
+}
+
 @media (max-width: 749px) {
   .r2 .nh-ann { min-height: 30px; }
   .r2 .nh-util { display: none; }
