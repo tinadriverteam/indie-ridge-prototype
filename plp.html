@@ -45,13 +45,21 @@ body { margin: 0; }
 
 <main>
 
-<nav class="plp-crumbs" aria-label="Breadcrumb"><a href="home-r2.html">Home</a><sc-if value="{{isBoots}}"><span aria-hidden="true">/</span><a href="plp.html?collection=boots">Motorcycle Boots</a></sc-if><span aria-hidden="true">/</span><span aria-current="page">Shop All</span></nav>
+<nav class="plp-crumbs" aria-label="Breadcrumb"><a href="home-r2.html">Home</a><sc-if value="{{isCollection}}"><span aria-hidden="true">/</span><a href="plp.html?collection=boots">Motorcycle Boots</a></sc-if><span aria-hidden="true">/</span><span aria-current="page">{{crumb}}</span></nav>
 
+<sc-if value="{{banner.split}}">
+<section class="plp-split">
+<div class="plp-split__copy"><h1>{{banner.h}}</h1><p>{{banner.p}}</p></div>
+<div class="plp-split__media"><img class="hp-img" src="{{banner.i}}" alt="{{banner.alt}}" style="object-position: {{banner.pos}};"></div>
+</section>
+</sc-if>
+<sc-if value="{{banner.hero}}">
 <section class="plp-banner">
 <img class="hp-img" src="{{banner.i}}" alt="" style="object-position: {{banner.pos}};">
 <div class="plp-banner__copy"><h1>{{banner.h}}</h1><p>{{banner.p}}</p></div>
-<sc-if value="{{isBoots}}"><div class="plp-banner__btns"><a class="btn-red" href="#">Shop men’s</a><a class="btn-red" href="#">Shop women’s</a></div></sc-if>
+<sc-if value="{{banner.btns}}"><div class="plp-banner__btns"><a class="btn-red" href="plp.html?collection=mens">Shop men’s</a><a class="btn-red" href="plp.html?collection=womens">Shop women’s</a></div></sc-if>
 </section>
+</sc-if>
 
 <div class="plp-bar">
 <div class="plp-facets">
@@ -84,7 +92,7 @@ body { margin: 0; }
 <div class="plp-grid">
 <sc-for list="{{sec.items}}" as="p">
 <sc-if value="{{p.isTile}}">
-<div class="plp-tile"><img class="hp-img" src="assets/48acd977afa766a1e9d7f59054adcb51.webp" alt="Gloved hands holding a phone with a map on it"><h2>Boots need backup.</h2><a class="btn-red" href="#">Shop gloves</a></div>
+<div class="plp-tile"><img class="hp-img" src="{{tile.i}}" alt="{{tile.alt}}" style="object-position: {{tile.pos}};"><h2>Boots need backup.</h2><a class="btn-red" href="#">{{tile.btn}}</a></div>
 </sc-if>
 <sc-if value="{{p.t}}">
 <div class="plp-card">
@@ -105,13 +113,15 @@ body { margin: 0; }
 </sc-if>
 </sc-for>
 
-<sc-if value="{{isBoots}}">
+<sc-if value="{{isCollection}}">
 <section class="plp-kit" aria-labelledby="kit-h">
 <h2 id="kit-h">Complete the kit</h2>
-<div class="plp-kit__tiles">
+<div class="plp-kit__slider"><div class="plp-kit__tiles" id="kit-row">
 <div class="plp-tile"><img class="hp-img" src="assets/bf61dee04108946a1f7cae4bbbb5ddf0.webp" alt="Brown leather riding glove on a motorcycle handlebar"><h2>Protect the grip</h2><a class="btn-red" href="#">Shop gloves</a></div>
 <div class="plp-tile"><img class="hp-img" src="assets/1b0e233016a27f32b9061e1ccffbb29a.jpg" alt="Close-up of a black Seven-Year Shirt with a red Indie Ridge tag" style="object-position: 50% 33%;"><h2>Ride-tested tees</h2><a class="btn-red" href="#">Shop apparel</a></div>
 <div class="plp-tile"><img class="hp-img" src="assets/81da0fd083262dccd1fb5d0a0451782f.jpg" alt="Rider in mirrored glasses and a black skull face mask"><h2>Head to neck</h2><a class="btn-red" href="#">Shop accessories</a></div>
+</div>
+<button type="button" class="h2-arr h2-arr--next plp-kit__next" aria-label="Next tile" onclick="{{kitNext}}"><img src="assets/plp-page-next.svg" width="8" height="12" alt=""></button>
 </div>
 </section>
 
@@ -207,8 +217,16 @@ const MEGA = [
   { h: 'Accessories', links: ['Face Masks', 'Riding Sleeves', 'Hats', 'Leather Conditioner'] }
 ];
 
-// ?collection=boots is the 3-across collection page; anything else is Shop All, 4 across
-const IS_BOOTS = new URLSearchParams(location.search).get('collection') === 'boots';
+// ?collection=boots|mens|womens is a 3-across collection page; anything else is Shop All, 4 across
+const BOOTS_TEXT = 'motorcycle boots with real protection, tested to the CE standard. Pick waterproof for wet roads or ventilated for hot ones.';
+const GLOVES_TILE = { i: 'assets/48acd977afa766a1e9d7f59054adcb51.webp', alt: 'Gloved hands holding a phone with a map on it', pos: '50% 50%', btn: 'Shop gloves' };
+const COLLECTIONS = {
+  boots: { crumb: 'Shop All', tile: GLOVES_TILE, banner: { hero: true, btns: true, h: 'Motorcycle boots', p: 'For all conditions.', i: 'assets/68a1cb764ca18c46e91889a67d6969fb.webp', pos: '50% 50%' } },
+  mens: { crumb: 'Shop All', tile: GLOVES_TILE, banner: { split: true, h: 'Men’s motorcycle boots', p: 'Men’s ' + BOOTS_TEXT, i: 'assets/39cfd957014a2db054302529ecb2ed64.webp', alt: 'Brown leather Indie Ridge boot on a motorcycle foot peg', pos: '50% 75.8%' } },
+  womens: { crumb: 'Women’s', tile: { i: 'assets/29812a5524ad72893f02d2e2ff51a2f6.webp', alt: 'Rider in a helmet and graphic tee beside her motorcycle', pos: '43% 100%', btn: 'Shop apparel' }, banner: { split: true, h: 'Women’s motorcycle boots', p: 'Women’s ' + BOOTS_TEXT, i: 'assets/40c75fe7f1ef4a99cac9b46396bbd686.webp', alt: 'Rider’s black boot on the foot peg of a parked motorcycle', pos: '50% 83%' } }
+};
+const COLLECTION = COLLECTIONS[new URLSearchParams(location.search).get('collection')];
+const IS_COLLECTION = !!COLLECTION;
 
 const COLORS = { Black: '#232323', Brown: '#603924', Tan: '#ccab7f', Navy: '#122a4f', Gray: '#5e5e61', Red: '#ce0000', White: '#ffffff' };
 const SIZES = ['6', '7', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '13', '14', '15'];
@@ -245,7 +263,7 @@ const APPAREL = rows(TEES, 4, [TEES[0]]);
 const ACCS = [acc('Riding Sleeves', 'Motorcycle Sleeves', 24, 'db2bb172fcc0c233affe08e81c553604.webp', 'Black', [B.new, B.vent], 'Summer'), acc('The Original Skull', 'Motorcycle Mask', 9.99, '7aa9b315c0c77705a756152d22ae6285.jpg', 'Black'), acc('The American', 'Motorcycle Mask', 9.99, '8f86f4c64563d8ffd8a738c96c488e51.jpg', 'Black'), acc('“Fleur De Risk”', 'Motorcycle Mask', 9.99, '2175948c3043a21396d5ee8577b51759.webp', 'Black')];
 const ACCESSORIES = rows(ACCS, 2, ACCS.slice(0, 3));
 
-const SECTIONS = IS_BOOTS ? [{ h: '', items: BOOTS }] : [
+const SECTIONS = IS_COLLECTION ? [{ h: '', items: BOOTS }] : [
   { h: 'BOOTS', items: BOOTS },
   { h: 'GLOVES', items: GLOVES, pager: true },
   { h: 'APPAREL', items: APPAREL },
@@ -257,7 +275,7 @@ const FACETS = [
   { key: 'size', label: 'Size', kind: 'size', opts: SIZES, match: (p) => p.cat === 'Motorcycle Boots' },
   { key: 'season', label: 'Season', kind: 'check', opts: ['Waterproof', 'Summer'], match: (p, v) => v.includes(p.season) },
   { key: 'color', label: 'Color', kind: 'color', opts: Object.keys(COLORS), match: (p, v) => v.includes(p.color) }
-].filter((f) => !(IS_BOOTS && f.key === 'cat'));
+].filter((f) => !(IS_COLLECTION && f.key === 'cat'));
 const SORTS = [['featured', 'Featured'], ['high', 'Price, high to low'], ['low', 'Price, low to high'], ['new', 'New']];
 const SORT_FN = { high: (a, b) => b.price - a.price, low: (a, b) => a.price - b.price, new: (a, b) => b.isNew - a.isNew };
 
@@ -302,10 +320,10 @@ class Component extends DCLogic {
     const sections = SECTIONS.map((sec) => {
       const items = sorted(sec.items.filter(keep));
       // The Seven-Year Shirt tile takes the ninth slot on the collection page, as in the Figma frame
-      if (IS_BOOTS && items.length) items.splice(Math.min(8, items.length), 0, { isTile: true });
+      if (IS_COLLECTION && items.length) items.splice(Math.min(8, items.length), 0, { isTile: true });
       return Object.assign({}, sec, { items, count: items.filter((p) => p.t).length });
     });
-    const shown = IS_BOOTS ? sections : sections.filter((sec) => sec.count);
+    const shown = IS_COLLECTION ? sections : sections.filter((sec) => sec.count);
     if (!shown.length) shown.push({ h: '', items: [], empty: true });
     const count = sections.reduce((n, sec) => n + sec.count, 0);
     const facets = FACETS.map((f) => {
@@ -326,11 +344,12 @@ class Component extends DCLogic {
     const chips = [];
     FACETS.forEach((f) => sel[f.key].forEach((v) => chips.push({ label: v, hex: f.kind === 'color' ? COLORS[v] : '', pick: () => this.toggleValue(f.key, v) })));
     return {
-      rootCls: 'p3 hp r2 hp2 plp' + (IS_BOOTS ? ' plp--3' : ''),
-      isBoots: IS_BOOTS,
-      banner: IS_BOOTS
-        ? { h: 'Motorcycle boots', p: 'For all conditions.', i: 'assets/68a1cb764ca18c46e91889a67d6969fb.webp', pos: '50% 50%' }
-        : { h: 'Shop all', p: 'Lorem ipsum dolor sit amet, consectetur adipiscing.', i: 'assets/dd3019da15a2fd2cfa6cfc6062b47bbe.webp', pos: '50% 68.6%' },
+      rootCls: 'p3 hp r2 hp2 plp ' + (IS_COLLECTION ? 'plp--3' : 'plp--4'),
+      isCollection: IS_COLLECTION,
+      crumb: IS_COLLECTION ? COLLECTION.crumb : 'Shop All',
+      tile: IS_COLLECTION ? COLLECTION.tile : {},
+      banner: IS_COLLECTION ? COLLECTION.banner : { hero: true, h: 'Shop all', p: 'Lorem ipsum dolor sit amet, consectetur adipiscing.', i: 'assets/dd3019da15a2fd2cfa6cfc6062b47bbe.webp', pos: '50% 68.6%' },
+      kitNext: () => { const el = document.getElementById('kit-row'); if (el) el.scrollBy({ left: el.firstElementChild.offsetWidth + 16, behavior: 'smooth' }); },
       sections: shown,
       countLabel: count + (count === 1 ? ' item' : ' items'),
       facets, chips, anyOn,

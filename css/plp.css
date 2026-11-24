@@ -14,6 +14,14 @@
 .plp-banner p { max-width: 385px; font-size: 16px; font-weight: 500; letter-spacing: .02em; }
 .plp-banner__btns { display: flex; flex-wrap: wrap; gap: 12px 24px; padding-top: 8px; }
 
+.plp-split { display: grid; grid-template-columns: 1fr 1fr; height: 379px; background: #ffffff; }
+.plp-split__copy { display: grid; align-content: center; gap: 16px; padding: 0 56px; background: #f6f6f6; }
+.plp-split h1 { font-size: 32px; line-height: 1.1; font-weight: 700; text-transform: uppercase; color: var(--red); }
+.plp-split p { max-width: 500px; font-size: 14px; line-height: 1.4; letter-spacing: .01em; color: var(--text); }
+.plp-split__media { position: relative; overflow: hidden; }
+.plp-kit__slider { position: relative; }
+.plp-kit__next { display: none; }
+
 /* Filter bar and dropdowns */
 .plp-bar { position: relative; z-index: 3; display: flex; align-items: center; gap: 20px; min-height: 84px; padding: 8px 40px; border-bottom: 1px solid var(--line); }
 .plp-facets { display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; }
@@ -79,8 +87,8 @@
 .plp-pager a:hover { color: var(--red); }
 
 /* Complete the kit, FAQ and video (collection pages) */
-.plp-kit { display: grid; gap: 32px; padding: 80px 48px; }
-.plp-kit h2 { font-size: 32px; line-height: 1.1; font-weight: 700; text-transform: uppercase; color: var(--ink); }
+.plp-kit { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 80px 48px; }
+.plp-kit > h2 { font-size: 32px; line-height: 1.1; font-weight: 700; text-transform: uppercase; color: var(--ink); }
 .plp-kit__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .plp-kit .plp-tile { justify-content: flex-end; height: 360px; }
 .plp-kit .btn-red { height: 44px; }
@@ -117,27 +125,46 @@
   .plp-mbar button { display: inline-flex; align-items: center; gap: 4.8px; margin-left: -3px; padding: 0; border: 0; background: none; font-size: 13px; font-weight: 700; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; color: var(--text); cursor: pointer; }
   .plp-mbar__n { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(35, 35, 35, .8); }
   .plp-h { font-size: 32px; padding: 16px; }
-  .plp-grid, .plp--3 .plp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 16px; }
-  .plp-card .hp-card__media, .plp--3 .plp-card .hp-card__media { aspect-ratio: 1; background: var(--surface); }
-  .plp-card .hp-badges { top: 8px; left: 8px; right: 8px; }
-  .plp-card .hp-badge { height: 17px; padding: 0 4px; font-size: 8px; }
-  .plp-card .hp-card__name { display: grid; gap: 0; justify-content: start; margin-top: 8px; padding: 0; font-size: 14px; }
-  .plp-card .hp-card__name .ir-rating { order: -1; }
-  .plp-card .hp-card__row .ir-rating__stars svg { width: 10px; height: 10px; }
-  .plp-card .ir-rating__count { font-size: 12px; }
-  .plp-card .hp-card__sub { display: grid; gap: 0; justify-content: start; margin: 0; padding: 0 0 8px; font-size: 12px; line-height: 1.4; }
   .plp-qa { position: absolute; right: 8px; bottom: 8px; z-index: 2; display: grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 1.125px solid #000000; background: var(--surface); cursor: pointer; }
-  .plp-tile { grid-column: 1 / -1; aspect-ratio: 361 / 300; padding: 24px; }
-  .plp-tile h2 { font-size: 24px; }
   .plp-pager { padding: 36px 0 20px; }
   .plp-pager a, .plp-pager span { width: 44px; height: 44px; }
-  .plp-kit { padding: 56px 16px; gap: 24px; }
-  .plp-kit__tiles { grid-template-columns: minmax(0, 1fr); }
-  .plp-kit .plp-tile { height: 300px; aspect-ratio: auto; }
-  .plp-faq { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 56px 16px; }
-  .plp-faq h2 { font-size: 48px; }
+
+  /* Shop All: two across, rating above the name */
+  .plp--4 .plp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 16px; }
+  .plp--4 .plp-card .hp-card__media { aspect-ratio: 1; background: var(--surface); }
+  .plp--4 .plp-card .hp-badges { top: 8px; left: 8px; right: 8px; }
+  .plp--4 .plp-card .hp-badge { height: 17px; padding: 0 4px; font-size: 8px; }
+  .plp--4 .plp-card .hp-card__name { display: grid; gap: 0; justify-content: start; margin-top: 8px; padding: 0; font-size: 14px; }
+  .plp--4 .plp-card .hp-card__name .ir-rating { order: -1; }
+  .plp--4 .plp-card .hp-card__row .ir-rating__stars svg { width: 10px; height: 10px; }
+  .plp--4 .plp-card .ir-rating__count { font-size: 12px; }
+  .plp--4 .plp-card .hp-card__sub { display: grid; gap: 0; justify-content: start; margin: 0; padding: 0 0 8px; font-size: 12px; line-height: 1.4; }
+
+  /* Collection pages: one across; video, FAQ, then Complete the kit as a slider */
+  .plp--3 main { display: flex; flex-direction: column; }
+  .plp--3 main > * { min-width: 0; }
+  .plp--3 .plp-video { order: 1; }
+  .plp--3 .plp-faq { order: 2; }
+  .plp--3 .plp-kit { order: 3; }
+  .plp--3 .plp-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 0 16px 16px; }
+  .plp--3 .plp-card .hp-card__media { aspect-ratio: 361 / 348; }
+  .plp--3 .plp-card .hp-card__sub { padding-bottom: 16px; }
+  .plp--3 .plp-qa { right: 12px; bottom: 12px; width: 32px; height: 32px; }
+  .plp--3 .plp-tile { aspect-ratio: 361 / 264; padding: 24px; }
+  .plp-split { display: block; height: auto; padding: 32px 16px 16px; background: none; }
+  .plp-split__copy { padding: 0; background: none; }
+  .plp-split__media { display: none; }
+  .plp-kit { gap: 32px; padding: 40px 0 0; }
+  .plp-kit > h2 { padding: 0 16px; }
+  .plp-kit__tiles { display: flex; gap: 16px; padding: 0 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 16px; scrollbar-width: none; }
+  .plp-kit__tiles::-webkit-scrollbar { display: none; }
+  .plp-kit .plp-tile { flex: 0 0 346px; max-width: 88%; height: 360px; scroll-snap-align: start; }
+  .plp-kit__next { display: grid; top: calc(50% - 22px); right: 6px; }
+  .plp-faq { grid-template-columns: minmax(0, 1fr); gap: 30px; padding: 40px 16px; }
+  .plp-faq h2 { font-size: 32px; }
   .plp-faq summary { white-space: normal; }
-  .plp-video { padding: 24px 16px; }
+  .plp-video { padding: 22px 16px 16px; }
+  .plp-video video { aspect-ratio: 361 / 203.5; }
   .plp-video__row { flex-direction: column; }
 
   .plp-sheet { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; background: #ffffff; }
