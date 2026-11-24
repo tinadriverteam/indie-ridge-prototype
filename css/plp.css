@@ -204,3 +204,6 @@
   .plp-sheet__foot button { flex: 1; height: 52px; font-weight: 700; text-transform: uppercase; }
   .plp-sheet__foot .btn-dark { flex: 0 0 142px; }
 }
+
+/* Quick add is hidden for now at the client's request; delete this rule to bring it back */
+.plp .plp-qa { display: none; }
