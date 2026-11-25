@@ -11,6 +11,16 @@ html.ir-locked { overflow: hidden; }
 
 /* Cart drawer */
 .ir-c { position: fixed; top: 0; right: 0; bottom: 0; z-index: 1001; display: flex; flex-direction: column; width: 480px; max-width: 100%; background: #ffffff; border-left: 1px solid var(--line); }
+.ir-c.is-in { animation: ir-slide-in .35s cubic-bezier(.2, .8, .2, 1); }
+.ir-c.is-out { animation: ir-slide-out .25s cubic-bezier(.4, 0, 1, 1) forwards; }
+.ir-ov__shade.is-in { animation: ir-fade-in .35s ease; }
+.ir-ov__shade.is-out { animation: ir-fade-out .25s ease forwards; }
+@keyframes ir-slide-in { from { transform: translateX(100%); } }
+@keyframes ir-slide-out { to { transform: translateX(100%); } }
+@keyframes ir-fade-in { from { opacity: 0; } }
+@keyframes ir-fade-out { to { opacity: 0; } }
+/* A near-zero duration, not none, so animationend still fires and the close completes */
+@media (prefers-reduced-motion: reduce) { .ir-c.is-in, .ir-c.is-out, .ir-ov__shade.is-in, .ir-ov__shade.is-out { animation-duration: 1ms; } }
 .ir-c__head { padding: 20px; border-bottom: 1px solid var(--line); }
 .ir-c__head--empty { display: flex; justify-content: flex-end; border: 0; }
 .ir-c__bar { display: flex; align-items: center; justify-content: space-between; }

@@ -49,10 +49,19 @@
   var open = '', query = '', discountOpen = false, opener = null;
 
   function show(which) {
+    // Closing the cart slides it out first, then comes back here to remove it
+    var drawer = root.querySelector('.ir-c');
+    if (!which && drawer && !drawer.classList.contains('is-out')) {
+      drawer.classList.add('is-out');
+      root.querySelector('.ir-ov__shade').classList.add('is-out');
+      return drawer.addEventListener('animationend', function () { show(''); }, { once: true });
+    }
+    var opening = which === 'cart' && open !== 'cart';
     if (!open) opener = document.activeElement;
     open = which;
     document.documentElement.classList.toggle('ir-locked', !!which);
     render();
+    if (opening) { root.querySelector('.ir-c').classList.add('is-in'); root.querySelector('.ir-ov__shade').classList.add('is-in'); }
     if (!which && opener) opener.focus();
     var f = which === 'search' ? root.querySelector('.ir-s__input') : root.querySelector('.ir-close');
     if (f) f.focus();
