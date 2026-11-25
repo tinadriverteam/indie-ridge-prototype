@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="css/r2.css">
 <link rel="stylesheet" href="css/hp2.css">
 <link rel="stylesheet" href="css/menu.css">
-<link rel="stylesheet" href="css/plp.css?v=3">
+<link rel="stylesheet" href="css/plp.css?v=4">
 <link rel="stylesheet" href="css/overlays.css">
 <style>
 @font-face { font-family: 'Helvetica Now Display'; font-weight: 400; font-style: normal; font-display: swap; src: url(assets/8762a6e199e5416e344eea333f97d55b.woff2) format('woff2'); }
@@ -169,7 +169,8 @@ body { margin: 0; }
 </div>
 </sc-if>
 </sc-for>
-<label class="plp-msort">SORT<select value="{{sort}}" onchange="{{pickSortSelect}}"><sc-for list="{{sorts}}" as="o"><option value="{{o.key}}">{{o.label}}</option></sc-for></select></label>
+<button type="button" class="plp-acc" aria-expanded="{{sortAccOpen}}" onclick="{{toggleSortAcc}}">SORT<span class="plp-acc__val">{{sortLabel}}</span><span class="plp-acc__icon"><img src="assets/plp-acc-arrow.svg" width="10.5" height="10.5" alt=""></span></button>
+<sc-if value="{{sortAccOpenBool}}"><div class="plp-acc__body"><sc-for list="{{sorts}}" as="o"><button type="button" class="plp-sort" aria-pressed="{{o.on}}" onclick="{{o.pick}}">{{o.label}}</button></sc-for></div></sc-if>
 </div>
 <div class="plp-sheet__foot"><sc-if value="{{anyOn}}"><button type="button" class="btn-dark" onclick="{{clearAll}}">Clear all</button></sc-if><button type="button" class="btn-red" onclick="{{closeSheet}}">See {{countLabel}}</button></div>
 </div>
@@ -372,7 +373,9 @@ class Component extends DCLogic {
       toggleSort: () => this.setState({ pop: s.pop === 'sort' ? '' : 'sort' }),
       sort: s.sort,
       sorts: SORTS.map(([key, label]) => ({ key, label, on: String(s.sort === key), pick: () => this.setState({ sort: key, pop: '' }) })),
-      pickSortSelect: (e) => this.setState({ sort: e.target.value }),
+      sortLabel: SORTS.find(([key]) => key === s.sort)[1],
+      sortAccOpen: String(!!s.acc.sort), sortAccOpenBool: !!s.acc.sort,
+      toggleSortAcc: () => this.setState({ acc: Object.assign({}, s.acc, { sort: !s.acc.sort }) }),
       sheetOpen: !!s.sheet,
       openSheet: () => this.setState({ sheet: true }),
       closeSheet: () => this.setState({ sheet: false }),

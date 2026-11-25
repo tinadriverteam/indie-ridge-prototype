@@ -187,6 +187,8 @@
   .plp-chip i { width: 12px; height: 12px; border: .667px solid var(--text); }
   .plp-acc { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 16px; border: 0; border-bottom: 1px solid var(--line); background: none; font-size: 15px; font-weight: 500; color: var(--text); cursor: pointer; }
   .plp-acc[aria-expanded="true"] { border-bottom: 0; }
+  .plp-acc__val { margin: 0 12px 0 auto; font-size: 14px; font-weight: 400; }
+  .plp-acc__body .plp-sort { padding: 4px 0; font-size: 16px; font-weight: 500; line-height: 1.1; }
   .plp-acc__icon { display: grid; place-items: center; width: 24px; height: 24px; border: .75px solid var(--text); border-radius: 1px; }
   .plp-acc__icon img { filter: invert(1); transform: rotate(180deg); }
   .plp-acc[aria-expanded="true"] .plp-acc__icon { border-color: var(--red); background: var(--red); }
@@ -198,8 +200,6 @@
   .plp-acc__body .plp-colors { display: flex; flex-wrap: wrap; gap: 0; }
   .plp-acc__body .plp-color { width: 48px; height: 48px; border-width: 2px; }
   .plp-acc__body .plp-color span { width: 36px; height: 36px; border-width: 2px; }
-  .plp-msort { display: flex; justify-content: space-between; align-items: center; padding: 12px 13px 12px 18px; font-size: 15px; font-weight: 500; color: var(--text); }
-  .plp-msort select { padding: 4px 26px 4px 8px; border: 0; background: url(../assets/plp-sort-updown.svg) right 8px center / 7px no-repeat; font: inherit; font-size: 14px; font-weight: 400; color: var(--text); text-align: right; appearance: none; }
   .plp-sheet__foot { display: flex; gap: 11px; padding: 8px 16px 12px; }
   .plp-sheet__foot button { flex: 1; height: 52px; font-weight: 700; text-transform: uppercase; }
   .plp-sheet__foot .btn-dark { flex: 0 0 142px; }
