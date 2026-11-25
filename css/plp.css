@@ -207,3 +207,16 @@
 
 /* Quick add is hidden for now at the client's request; delete this rule to bring it back */
 .plp .plp-qa { display: none; }
+
+/* Search results page (plp.html?q=) */
+.plp-search { display: flex; flex-direction: column; gap: 24px; padding: 40px 40px 16px; background: #f5f5f5; }
+.plp-search h1 { margin: 0; font-size: 48px; font-weight: 700; line-height: 1.1; color: var(--text); }
+.plp-search__form { position: relative; width: 674.5px; max-width: 100%; }
+.plp-search__form > img { position: absolute; top: 50%; left: 17px; transform: translateY(-50%); pointer-events: none; }
+.plp-search__form input { width: 100%; box-sizing: border-box; padding: 16px 54px; border: 1px solid var(--line); border-radius: 0; background: none; font: inherit; font-size: 16px; font-weight: 500; line-height: 1.1; letter-spacing: .02em; color: var(--text); -webkit-appearance: none; appearance: none; }
+.plp-search__form input::-webkit-search-cancel-button { display: none; }
+.plp-search__form button { position: absolute; top: 50%; right: 16px; display: grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 0; background: none; transform: translateY(-50%); cursor: pointer; }
+@media (max-width: 749px) {
+  .plp-search { gap: 16px; padding: 32px 16px 16px; }
+  .plp-search h1 { font-size: 32px; }
+}

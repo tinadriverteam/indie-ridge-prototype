@@ -8,6 +8,9 @@ Clickable prototypes of the homepage in two versions, and of The Crow product pa
 - `menu.html` — mega menu on the round 2 homepage: hover Shop All on desktop, tap the menu icon on mobile
 - `collection.html` — review page for the collection page (PLP)
 - `plp.html` — Shop All, 4 across; add `?collection=boots`, `mens` or `womens` for a collection page, 3 across
+- `cart.html` — review page for the cart drawer
+- `search.html` — review page for search; `plp.html?q=boots` is the search results page
+- `css/overlays.css`, `js/overlays.js` — the cart drawer and search overlay on the round 2 pages; add `?cart=open`, `?cart=empty` (with `&account=in` for logged in) or `?search`, `?search=boots` to open one
 - `drawer.html`, `accordion.html`, `gallery.html` — add `?gender=womens` to open the women's page with size 10 sold out
 - `assets/` — product images, video and Helvetica Now Display font files
 - `css/`, `js/` — styles, React 18 and the small renderer that runs the page templates

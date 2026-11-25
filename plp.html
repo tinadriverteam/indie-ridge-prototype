@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/hp2.css">
 <link rel="stylesheet" href="css/menu.css">
 <link rel="stylesheet" href="css/plp.css?v=3">
+<link rel="stylesheet" href="css/overlays.css">
 <style>
 @font-face { font-family: 'Helvetica Now Display'; font-weight: 400; font-style: normal; font-display: swap; src: url(assets/8762a6e199e5416e344eea333f97d55b.woff2) format('woff2'); }
 @font-face { font-family: 'Helvetica Now Display'; font-weight: 500; font-style: normal; font-display: swap; src: url(assets/6d799c3410f5b43439138eb2e291c39b.woff2) format('woff2'); }
@@ -44,7 +45,7 @@ body { margin: 0; }
 
 <main>
 
-<nav class="plp-crumbs" aria-label="Breadcrumb"><a href="home-r2.html">Home</a><sc-if value="{{isCollection}}"><span aria-hidden="true">/</span><a href="plp.html?collection=boots">Motorcycle Boots</a></sc-if><span aria-hidden="true">/</span><span aria-current="page">{{crumb}}</span></nav>
+<sc-if value="{{showCrumbs}}"><nav class="plp-crumbs" aria-label="Breadcrumb"><a href="home-r2.html">Home</a><sc-if value="{{isCollection}}"><span aria-hidden="true">/</span><a href="plp.html?collection=boots">Motorcycle Boots</a></sc-if><span aria-hidden="true">/</span><span aria-current="page">{{crumb}}</span></nav></sc-if>
 
 <sc-if value="{{banner.split}}">
 <section class="plp-split">
@@ -57,6 +58,13 @@ body { margin: 0; }
 <img class="hp-img" src="{{banner.i}}" alt="" style="object-position: {{banner.pos}};">
 <div class="plp-banner__copy"><h1>{{banner.h}}</h1><p>{{banner.p}}</p></div>
 <sc-if value="{{banner.btns}}"><div class="plp-banner__btns"><a class="btn-red" href="plp.html?collection=mens">Shop men’s</a><a class="btn-red" href="plp.html?collection=womens">Shop women’s</a></div></sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{banner.search}}">
+<section class="plp-search">
+<h1>Search results</h1>
+<form class="plp-search__form" action="plp.html" role="search"><img src="assets/search-icon.svg" width="22" height="22" alt=""><input type="search" name="q" value="{{q}}" onchange="{{setQ}}" aria-label="Search" autocomplete="off"><button type="button" aria-label="Clear search" onclick="{{clearQ}}"><img src="assets/search-clear.svg" width="22" height="22" alt=""></button></form>
 </section>
 </sc-if>
 
@@ -105,14 +113,14 @@ body { margin: 0; }
 </div>
 </sc-if>
 </sc-for>
-<sc-if value="{{sec.empty}}"><p class="plp-empty">No products match these filters.</p></sc-if>
+<sc-if value="{{sec.empty}}"><p class="plp-empty">{{emptyText}}</p></sc-if>
 </div>
 <sc-if value="{{sec.pager}}">
 <nav class="plp-pager" aria-label="Pages"><span class="is-off" aria-hidden="true"><img src="assets/plp-page-prev.svg" width="8" height="12" alt=""></span><span aria-current="page">1</span><a href="#">2</a><a href="#">3</a><a href="#" aria-label="Next page"><img src="assets/plp-page-next.svg" width="8" height="12" alt=""></a></nav>
 </sc-if>
 </sc-for>
 
-<sc-if value="{{isCollection}}">
+<sc-if value="{{showExtras}}">
 <section class="plp-kit" aria-labelledby="kit-h">
 <h2 id="kit-h">Complete the kit</h2>
 <div class="plp-kit__slider"><div class="plp-kit__tiles" id="kit-row">
@@ -224,7 +232,9 @@ const COLLECTIONS = {
   mens: { crumb: 'Men’s', tile: GLOVES_TILE, banner: { split: true, h: 'Men’s motorcycle boots', p: 'Men’s ' + BOOTS_TEXT, i: 'assets/39cfd957014a2db054302529ecb2ed64.webp', alt: 'Brown leather Indie Ridge boot on a motorcycle foot peg', pos: '50% 75.8%' } },
   womens: { crumb: 'Women’s', tile: { i: 'assets/29812a5524ad72893f02d2e2ff51a2f6.webp', alt: 'Rider in a helmet and graphic tee beside her motorcycle', pos: '43% 100%', btn: 'Shop apparel' }, banner: { split: true, h: 'Women’s motorcycle boots', p: 'Women’s ' + BOOTS_TEXT, i: 'assets/40c75fe7f1ef4a99cac9b46396bbd686.webp', alt: 'Rider’s black boot on the foot peg of a parked motorcycle', pos: '50% 83%' } }
 };
-const COLLECTION = COLLECTIONS[new URLSearchParams(location.search).get('collection')];
+// ?q= is the search results page: the collection layout, with a search field, showing the products that match
+const Q = (new URLSearchParams(location.search).get('q') || '').trim();
+const COLLECTION = Q ? { crumb: 'Search', tile: GLOVES_TILE, banner: { search: true } } : COLLECTIONS[new URLSearchParams(location.search).get('collection')];
 const IS_COLLECTION = !!COLLECTION;
 
 const COLORS = { Black: '#232323', Brown: '#603924', Tan: '#ccab7f', Navy: '#122a4f', Gray: '#5e5e61', Red: '#ce0000', White: '#ffffff' };
@@ -262,7 +272,8 @@ const APPAREL = rows(TEES, 4, [TEES[0]]);
 const ACCS = [acc('Riding Sleeves', 'Motorcycle Sleeves', 24, 'db2bb172fcc0c233affe08e81c553604.webp', 'Black', [B.new, B.vent], 'Summer'), acc('The Original Skull', 'Motorcycle Mask', 9.99, '7aa9b315c0c77705a756152d22ae6285.jpg', 'Black'), acc('The American', 'Motorcycle Mask', 9.99, '8f86f4c64563d8ffd8a738c96c488e51.jpg', 'Black'), acc('“Fleur De Risk”', 'Motorcycle Mask', 9.99, '2175948c3043a21396d5ee8577b51759.webp', 'Black')];
 const ACCESSORIES = rows(ACCS, 2, ACCS.slice(0, 3));
 
-const SECTIONS = IS_COLLECTION ? [{ h: '', items: BOOTS }] : [
+const matches = (p) => Q.toLowerCase().split(/\s+/).every((w) => (p.t + ' ' + p.s + ' ' + p.cat + ' ' + p.color).toLowerCase().includes(w));
+const SECTIONS = IS_COLLECTION ? [{ h: '', items: Q ? BOOTS.concat(GLOVES.slice(0, 4), TEES, ACCS).filter(matches) : BOOTS }] : [
   { h: 'BOOTS', items: BOOTS },
   { h: 'GLOVES', items: GLOVES, pager: true },
   { h: 'APPAREL', items: APPAREL },
@@ -274,7 +285,7 @@ const FACETS = [
   { key: 'size', label: 'Size', kind: 'size', opts: SIZES, match: (p) => p.cat === 'Motorcycle Boots' },
   { key: 'season', label: 'Season', kind: 'check', opts: ['Waterproof', 'Summer'], match: (p, v) => v.includes(p.season) },
   { key: 'color', label: 'Color', kind: 'color', opts: Object.keys(COLORS), match: (p, v) => v.includes(p.color) }
-].filter((f) => !(IS_COLLECTION && f.key === 'cat'));
+].filter((f) => !(IS_COLLECTION && !Q && f.key === 'cat'));
 const SORTS = [['featured', 'Featured'], ['high', 'Price, high to low'], ['low', 'Price, low to high'], ['new', 'New']];
 const SORT_FN = { high: (a, b) => b.price - a.price, low: (a, b) => a.price - b.price, new: (a, b) => b.isNew - a.isNew };
 
@@ -322,9 +333,8 @@ class Component extends DCLogic {
       if (IS_COLLECTION && items.length) items.splice(Math.min(8, items.length), 0, { isTile: true });
       return Object.assign({}, sec, { items, count: items.filter((p) => p.t).length });
     });
-    const shown = IS_COLLECTION ? sections : sections.filter((sec) => sec.count);
-    if (!shown.length) shown.push({ h: '', items: [], empty: true });
     const count = sections.reduce((n, sec) => n + sec.count, 0);
+    const shown = !count ? [{ h: '', items: [], empty: true }] : IS_COLLECTION ? sections : sections.filter((sec) => sec.count);
     const facets = FACETS.map((f) => {
       const vals = sel[f.key], isOpen = s.pop === f.key, accOpen = !!s.acc[f.key];
       return {
@@ -345,6 +355,11 @@ class Component extends DCLogic {
     return {
       rootCls: 'p3 hp r2 hp2 plp ' + (IS_COLLECTION ? 'plp--3' : 'plp--4'),
       isCollection: IS_COLLECTION,
+      showCrumbs: !Q, showExtras: IS_COLLECTION && !Q,
+      q: s.q ?? Q,
+      setQ: (e) => this.setState({ q: e.target.value }),
+      clearQ: () => { this.setState({ q: '' }); document.querySelector('.plp-search input').focus(); },
+      emptyText: Q && !anyOn ? 'No results found for "' + Q + '". Try another search.' : 'No products match these filters.',
       crumb: IS_COLLECTION ? COLLECTION.crumb : 'Shop All',
       tile: IS_COLLECTION ? COLLECTION.tile : {},
       banner: IS_COLLECTION ? COLLECTION.banner : { hero: true, h: 'Shop all', p: 'Lorem ipsum dolor sit amet, consectetur adipiscing.', i: 'assets/dd3019da15a2fd2cfa6cfc6062b47bbe.webp', pos: '50% 68.6%' },
@@ -378,5 +393,6 @@ class Component extends DCLogic {
 }
 mountDC(Component, {});
 </script>
+<script src="js/overlays.js"></script>
 </body>
 </html>
