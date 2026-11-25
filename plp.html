@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="css/r2.css">
 <link rel="stylesheet" href="css/hp2.css">
 <link rel="stylesheet" href="css/menu.css">
-<link rel="stylesheet" href="css/plp.css?v=5">
+<link rel="stylesheet" href="css/plp.css?v=6">
 <link rel="stylesheet" href="css/overlays.css">
 <style>
 @font-face { font-family: 'Helvetica Now Display'; font-weight: 400; font-style: normal; font-display: swap; src: url(assets/8762a6e199e5416e344eea333f97d55b.woff2) format('woff2'); }
@@ -169,7 +169,7 @@ body { margin: 0; }
 </div>
 </sc-if>
 </sc-for>
-<label class="plp-msort">SORT<span class="plp-msort__val">{{sortLabel}}<img src="assets/plp-sort-updown.svg" width="7.1" height="11.45" alt=""></span><select value="{{sort}}" onchange="{{pickSortSelect}}"><sc-for list="{{sorts}}" as="o"><option value="{{o.key}}">{{o.label}}</option></sc-for></select></label>
+<div class="plp-msort"><span id="msort-l">SORT</span><span class="plp-msort__val">{{sortLabel}}<img src="assets/plp-sort-updown.svg" width="7.1" height="11.45" alt=""><select aria-labelledby="msort-l" value="{{sort}}" onchange="{{pickSortSelect}}"><option value="featured">Featured</option><option value="high">Price, high to low</option><option value="low">Price, low to high</option><option value="new">New</option></select></span></div>
 </div>
 <div class="plp-sheet__foot"><sc-if value="{{anyOn}}"><button type="button" class="btn-dark" onclick="{{clearAll}}">Clear all</button></sc-if><button type="button" class="btn-red" onclick="{{closeSheet}}">See {{countLabel}}</button></div>
 </div>
